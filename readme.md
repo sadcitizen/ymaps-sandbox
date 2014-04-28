@@ -7,3 +7,5 @@
 * `grunt serve`
 
 Песочница откроется на `http://localhost:9000/`
+
+[Демка](http://instanceofpro.github.io/ymaps-sandbox/app/)
