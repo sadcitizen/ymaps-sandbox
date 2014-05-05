@@ -10,7 +10,7 @@
         myMap = new ymaps.Map('ymap', {
             center: [55.16032, 61.40102],
             zoom: 12,
-            controls: []
+            controls: ['typeSelector', 'zoomControl', 'searchControl']
         }, {
             balloonMaxWidth: 200
         });
@@ -21,33 +21,28 @@
             }
 
             coordinates = e.get('coords');
-
             ymaps.geocode(coordinates, {result: 1}).then(successHandler, errorHandler);
-        });
-
-        myMap.events.add('balloonopen', function () {
-            myMap.hint.close();
         });
     }
 
     function successHandler(res) {
         var resObj = res.geoObjects.get(0),
             resBounds = resObj.properties.get('boundedBy'),
-            resCoordinates = resObj.geometry.getCoordinates(),
+            //resCoordinates = resObj.geometry.getCoordinates(),
             resName = parseName(resObj.properties.get('name'));
 
         myMap.setBounds(resBounds, {
             checkZoomRange: true
         });
 
-        myMap.balloon.open(resCoordinates, {
+        myMap.balloon.open(coordinates, {
             contentHeader: resName,
             contentBody: '<p><strong>Широта:</strong> ' + coordinates[0].toPrecision(6) + '<br />' +
                 '<strong>Долгота:</strong> ' + coordinates[1].toPrecision(6) + '</p>'
         });
 
-        $latitude.val(resCoordinates[0].toPrecision(10));
-        $longitude.val(resCoordinates[1].toPrecision(10));
+        $latitude.val(coordinates[0].toPrecision(10));
+        $longitude.val(coordinates[1].toPrecision(10));
         $address.val(resName);
     }
 
