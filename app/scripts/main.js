@@ -73,3 +73,5 @@
     ymaps.ready(init);
 
 })(jQuery, this, this.ymaps);
+
+//http://2gis.ru/chelyabinsk/callout/61.42623300,55.16039100,16/center/61.42623300,55.16039100/zoom/16 - Формат для 2gis
