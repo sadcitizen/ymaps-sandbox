@@ -12,7 +12,7 @@
         myMap = new ymaps.Map('ymap', {
             center: [55.16032, 61.40102],
             zoom: 12,
-            controls: ['typeSelector', 'zoomControl', 'searchControl']
+            controls: ['typeSelector', 'zoomControl']
         }, {
             balloonMaxWidth: 200
         });
@@ -30,21 +30,21 @@
     function successHandler(res) {
         var resObj = res.geoObjects.get(0),
             resBounds = resObj.properties.get('boundedBy'),
-            //resCoordinates = resObj.geometry.getCoordinates(),
+            resCoordinates = resObj.geometry.getCoordinates(),
             resName = parseName(resObj.properties.get('name'));
 
         myMap.setBounds(resBounds, {
             checkZoomRange: true
         });
 
-        myMap.balloon.open(coordinates, {
+        myMap.balloon.open(resCoordinates, {
             contentHeader: resName,
-            contentBody: '<p><strong>Широта:</strong> ' + coordinates[0].toPrecision(6) + '<br />' +
-                '<strong>Долгота:</strong> ' + coordinates[1].toPrecision(6) + '</p>'
+            contentBody: '<p><strong>Широта:</strong> ' + resCoordinates[0].toPrecision(6) + '<br />' +
+                '<strong>Долгота:</strong> ' + resCoordinates[1].toPrecision(6) + '</p>'
         });
 
-        $latitude.val(coordinates[0].toPrecision(10));
-        $longitude.val(coordinates[1].toPrecision(10));
+        $latitude.val(resCoordinates[0].toPrecision(10));
+        $longitude.val(resCoordinates[1].toPrecision(10));
         $address.val(resName);
     }
 
@@ -67,7 +67,7 @@
     });
 
     function searchByAddress(address) {
-        debugger;
+        ymaps.geocode('Челябинск, ' + address, {result: 1}).then(successHandler, errorHandler);
     }
 
     ymaps.ready(init);
