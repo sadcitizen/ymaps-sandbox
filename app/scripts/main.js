@@ -4,7 +4,9 @@
         coordinates,
         $latitude = $('#latitude'),
         $longitude = $('#longitude'),
-        $address = $('#address');
+        $address = $('#address'),
+        $search = $('#search'),
+        $button = $('#search-btn');
 
     function init() {
         myMap = new ymaps.Map('ymap', {
@@ -55,6 +57,17 @@
             .replace('улица', 'ул.')
             .replace('площадь', 'пл.')
             .replace('проспект', 'пр.');
+    }
+
+    $button.on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        searchByAddress($search.val().replace(/\s*/ig, ''));
+    });
+
+    function searchByAddress(address) {
+        debugger;
     }
 
     ymaps.ready(init);

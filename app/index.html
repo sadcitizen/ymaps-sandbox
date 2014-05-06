@@ -23,12 +23,19 @@
         <![endif]-->
 
         <div class="container">
-            <div class="header">
-                <h3 class="text-muted">Яндекс.Карты: Песочница</h3>
+            <div class="header row">
+                <h3 class="text-muted col-md-9">Яндекс.Карты: Песочница</h3>
+                <div class="col-md-3">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="search" placeholder="Адрес для поиска">
+                        </div>
+                        <input type="submit" id="search-btn" class="btn btn-primary" value="Найти" />
+                    </form>
+                </div>
             </div>
 
             <div id="ymap" class="map"></div>
-
 
             <div class="footer">
                 <div class="row">
