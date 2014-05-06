@@ -75,3 +75,4 @@
 })(jQuery, this, this.ymaps);
 
 //http://2gis.ru/chelyabinsk/callout/61.42623300,55.16039100,16/center/61.42623300,55.16039100/zoom/16 - Формат для 2gis
+//https://www.google.ru/maps/@55.1602799,61.4258922,16z - Формат для Google Maps
